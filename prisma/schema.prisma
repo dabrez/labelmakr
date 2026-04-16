@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Dataset {
+  id          String    @id @default(cuid())
+  name        String
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  examples    Example[]
+
+  @@map("datasets")
+}
+
+model Example {
+  id        String   @id @default(cuid())
+  datasetId String
+  dataset   Dataset  @relation(fields: [datasetId], references: [id], onDelete: Cascade)
+  messages  String   // JSON: Array of { role: "system"|"user"|"assistant", content: string }
+  status    String   @default("pending") // pending | approved | rejected
+  source    String   @default("manual") // manual | imported | synthetic
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([datasetId])
+  @@index([status])
+  @@map("examples")
+}

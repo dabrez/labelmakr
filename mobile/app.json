@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Labelmakr",
+    "slug": "labelmakr",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "labelmakr",
+    "userInterfaceStyle": "dark",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.labelmakr.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#030712"
+      },
+      "package": "com.labelmakr.app"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
